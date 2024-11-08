@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "destiny2mc",
+  "version": "${version}",
+  "name": "Destiny2MC",
+  "description": "Bring Destiny 2 to minecraft with community coperate",
+  "authors": [],
+  "contact": {},
+  "license": "custom",
+  "icon": "assets/destiny2mc/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "net.biryeongtrain.destiny2mc.Destiny2mc"
+    ]
+  },
+  "mixins": [
+    "destiny2mc.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
