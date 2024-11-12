@@ -13,6 +13,10 @@ base {
 
 repositories {
     maven { url "https://maven.nucleoid.xyz" }
+    maven {
+        name = 'Ladysnake Mods'
+        url = 'https://maven.ladysnake.org/releases'
+    }
 }
 
 dependencies {
@@ -28,6 +32,12 @@ dependencies {
     modImplementation("eu.pb4:polymer-resource-pack:${project.polymer_version}")
     modImplementation("eu.pb4:polymer-blocks:${project.polymer_version}")
 //    modImplementation include("xyz.nucleoid:server-translations-api:${project.server_translation_api}")
+
+    modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-base:${project.cardinal_component_api_versoin}")
+    modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-entity:${project.cardinal_component_api_versoin}")
+    modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-item:${project.cardinal_component_api_versoin}")
+    modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-level:${project.cardinal_component_api_versoin}")
+    modImplementation include("org.ladysnake.cardinal-components-api:cardinal-components-world:${project.cardinal_component_api_versoin}")
 }
 
 processResources {
