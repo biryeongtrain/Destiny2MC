@@ -12,6 +12,9 @@
   "entrypoints": {
     "main": [
       "net.biryeongtrain.destiny2mc.Destiny2mc"
+    ],
+    "cardinal-components": [
+      "net.biryeongtrain.destiny2mc.DestinyComponents"
     ]
   },
   "mixins": [
@@ -21,5 +24,10 @@
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
     "minecraft": "${minecraft_version}"
+  },
+  "custom": {
+    "cardinal-components": [
+      "destiny2mc:recoil_manager"
+    ]
   }
 }

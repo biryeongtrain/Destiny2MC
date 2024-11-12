@@ -1,16 +1,14 @@
 package net.biryeongtrain.destiny2mc.gun;
 
 import eu.pb4.polymer.core.api.item.PolymerItem;
+import net.biryeongtrain.destiny2mc.DestinyComponents;
+import net.biryeongtrain.destiny2mc.component.RecoilManager;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerPosition;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.network.packet.s2c.play.BundleS2CPacket;
-import net.minecraft.network.packet.s2c.play.PlayerPositionLookS2CPacket;
-import net.minecraft.network.packet.s2c.play.PlayerRotationS2CPaket;
-import net.minecraft.network.packet.s2c.play.PositionFlag;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
@@ -51,13 +49,29 @@ public class Gun extends Item implements PolymerItem
     public ActionResult use(World world, PlayerEntity user, Hand hand) {
         if (user instanceof ServerPlayerEntity) {
             ServerPlayerEntity player = (ServerPlayerEntity) user;
+            RecoilManager manager = DestinyComponents.RECOIL_MANAGER.get(player);
+            manager.startRecoil(3.0f, 40, 6);
             ItemStack stack = user.getStackInHand(hand);
-            recoil(player, stack);
+            player.getItemCooldownManager().set(stack, 20);
         }
         return super.use(world, user, hand);
     }
 
+    @Override
+    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+        if (user instanceof ServerPlayerEntity) {
+            ServerPlayerEntity player = (ServerPlayerEntity) user;
+            RecoilManager manager = DestinyComponents.RECOIL_MANAGER.get(player);
+            if (manager.isRecoilInProgress()) {
+                manager.stopRecoil();
+            }
+        }
+        return super.finishUsing(stack, world, user);
+    }
+
     public void recoil(ServerPlayerEntity user, ItemStack stack) {
+        // -180 ~ 180 (yaw, pitch)
+        // 방법 1 :
         user.rotate(user.getYaw(), user.getPitch() - 1.5f);
     }
 
