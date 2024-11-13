@@ -50,9 +50,9 @@ public class Gun extends Item implements PolymerItem
         if (user instanceof ServerPlayerEntity) {
             ServerPlayerEntity player = (ServerPlayerEntity) user;
             RecoilManager manager = DestinyComponents.RECOIL_MANAGER.get(player);
-            manager.startRecoil(3.0f, 40, 6);
+            manager.startRecoil(1.f, 100, 2);
             ItemStack stack = user.getStackInHand(hand);
-            player.getItemCooldownManager().set(stack, 20);
+//            player.getItemCooldownManager().set(stack, 20);
         }
         return super.use(world, user, hand);
     }

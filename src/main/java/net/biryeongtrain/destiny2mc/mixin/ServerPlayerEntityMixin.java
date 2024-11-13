@@ -16,7 +16,7 @@ public class ServerPlayerEntityMixin implements ServerPlayerEntityDuck {
     @Unique
     private AbstractJump destiny2$jump = new HunterJump();
 
-    @Inject(method = "onLanding", at = @At("HEAD"))
+    @Inject(method = "onLanding", at = @At("TAIL"))
     private void destiny2$resetJump(CallbackInfo ci) {
         destiny2$jump.release(((ServerPlayerEntity) (Object) this));
     }

@@ -2,10 +2,16 @@ package net.biryeongtrain.destiny2mc.component;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.s2c.play.BundleS2CPacket;
+import net.minecraft.network.packet.s2c.play.PlayerRotationS2CPaket;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.server.network.ServerPlayerEntity;
 import org.apache.logging.log4j.core.jmx.Server;
 import org.ladysnake.cca.api.v3.component.tick.ServerTickingComponent;
+
+import java.util.ArrayList;
 
 public class RecoilManager implements ServerTickingComponent {
     private final ServerPlayerEntity player;
@@ -26,12 +32,12 @@ public class RecoilManager implements ServerTickingComponent {
 
     @Override
     public void serverTick() {
-//        if (player.age % 2 != 0) {
-//            return;
-//        }
+        if (player.age % 2 != 0) {
+            return;
+        }
 
         if (this.ticksUntilRecoilEnds > 0) {
-            this.ticksUntilRecoilEnds--;
+            this.ticksUntilRecoilEnds-=2;
             this.player.rotate(player.getYaw() +  this.recoilYawPerTick, player.getPitch() - this.recoilPitchPerTick);
             this.player.setYaw(this.player.getYaw() + this.recoilYawPerTick);
             this.player.setPitch(this.player.getPitch() - this.recoilPitchPerTick);
@@ -63,7 +69,10 @@ public class RecoilManager implements ServerTickingComponent {
     }
 
     private float getYawRecoil() {
-        return (float) (80 * Math.sin(Math.PI/20 * (recoilDirection - 10))) / 10 / this.ticksUntilRecoilEnds;
+        if (recoilDirection % 10 == 0) {
+            return 0.0f;
+        }
+        return (float) (80 * Math.sin(Math.PI/20 * (recoilDirection - 10))) / 20 / this.ticksUntilRecoilEnds;
     }
 
 
