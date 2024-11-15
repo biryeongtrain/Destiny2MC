@@ -1,6 +1,6 @@
 package net.biryeongtrain.destiny2mc.mixin;
 
-import net.biryeongtrain.destiny2mc.ServerPlayerEntityDuck;
+import net.biryeongtrain.destiny2mc.duck.ServerPlayerEntityDuck;
 import net.biryeongtrain.destiny2mc.jump.AbstractJump;
 import net.biryeongtrain.destiny2mc.jump.HunterJump;
 import net.minecraft.server.network.ServerPlayerEntity;

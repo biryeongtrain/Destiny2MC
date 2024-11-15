@@ -1,14 +1,13 @@
 package net.biryeongtrain.destiny2mc.mixin;
 
 import net.biryeongtrain.destiny2mc.DestinyComponents;
-import net.biryeongtrain.destiny2mc.ServerPlayerEntityDuck;
+import net.biryeongtrain.destiny2mc.duck.ServerPlayerEntityDuck;
 import net.biryeongtrain.destiny2mc.component.RecoilManager;
 import net.minecraft.network.packet.c2s.play.PlayerInputC2SPacket;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.PlayerInput;
-import org.ladysnake.cca.api.v3.component.Component;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;

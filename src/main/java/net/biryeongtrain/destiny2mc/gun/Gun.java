@@ -69,12 +69,6 @@ public class Gun extends Item implements PolymerItem
         return super.finishUsing(stack, world, user);
     }
 
-    public void recoil(ServerPlayerEntity user, ItemStack stack) {
-        // -180 ~ 180 (yaw, pitch)
-        // 방법 1 :
-        user.rotate(user.getYaw(), user.getPitch() - 1.5f);
-    }
-
     public static class Sounds {
         Identifier fireSound;
         Identifier[] reloadSound;
