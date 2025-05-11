@@ -17,6 +17,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 import xyz.nucleoid.packettweaker.PacketContext;
 
 import java.util.List;
@@ -25,14 +26,21 @@ public class Gun extends Item implements PolymerItem
 {
     private ElementType type;
     private Sounds Sound;
-
-    public Gun(Settings settings) {
+    private final Identifier resourceLocation;
+    public Gun(Settings settings, Identifier resourceLocation) {
         super(settings);
+        this.resourceLocation = resourceLocation;
+        Box
     }
 
     @Override
     public ItemStack getPolymerItemStack(ItemStack itemStack, TooltipType tooltipType, PacketContext context) {
         return PolymerItem.super.getPolymerItemStack(itemStack, tooltipType, context);
+    }
+
+    @Override
+    public @Nullable Identifier getPolymerItemModel(ItemStack stack, PacketContext context) {
+        return this.resourceLocation;
     }
 
     @Override
@@ -55,6 +63,11 @@ public class Gun extends Item implements PolymerItem
 //            player.getItemCooldownManager().set(stack, 20);
         }
         return super.use(world, user, hand);
+    }
+
+    public float getFinalDamage() {
+        // FIXME: 2024-12-23 Implement this method
+        return 0;
     }
 
     @Override

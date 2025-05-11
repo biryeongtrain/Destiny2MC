@@ -13,5 +13,7 @@ public class JumpUtils {
     public static void sendVelocityDelta(ServerPlayerEntity player, Vec3d delta) {
         player.networkHandler.sendPacket(new ExplosionS2CPacket(new Vec3d(player.getX(),  player.getY() - 9999, player.getZ()), Optional.of(delta),
                 ParticleTypes.BUBBLE, Registries.SOUND_EVENT.getEntry(SoundEvents.INTENTIONALLY_EMPTY)));
+
+        Util.IO
     }
 }

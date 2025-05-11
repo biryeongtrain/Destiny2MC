@@ -20,10 +20,10 @@ public enum ElementType implements StringIdentifiable {
         this(id, getColor(hex), damageIncrement);
     }
 
-    ElementType(String id, TextColor color, float damageIncrement) {
+    ElementType(String id, TextColor color, float normalEntityDamageIncrement) {
         this.id = id;
         this.color = color;
-        this.damageIncrement = damageIncrement;
+        this.normalEntityDamageIncrement = normalEntityDamageIncrement;
     }
 
     private static TextColor getColor(String hex) {
@@ -42,7 +42,7 @@ public enum ElementType implements StringIdentifiable {
 
     public final String id;
     public final TextColor color;
-    public final float damageIncrement;
+    public final float normalEntityDamageIncrement;
 
     @Override
     public String asString() {

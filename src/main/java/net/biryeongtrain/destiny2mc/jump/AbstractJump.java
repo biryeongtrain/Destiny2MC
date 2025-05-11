@@ -15,6 +15,7 @@ public abstract class AbstractJump {
                 return;
             }
             pressed = false;
+            SavePath
         }
     }
 
